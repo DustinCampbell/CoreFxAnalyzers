@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreFxAnalyzers", "Source\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreFxAnalyzers.Tests", "Source\CoreFxAnalyzers.Tests\CoreFxAnalyzers.Tests.csproj", "{13263FE7-7BB0-459A-B91A-D1488C4C8C9D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AFA2D614-B81D-4C24-9958-45E859EAD050}"
+	ProjectSection(SolutionItems) = preProject
+		CoreFxAnalyzers.nuspec = CoreFxAnalyzers.nuspec
+		install.ps1 = install.ps1
+		uninstall.ps1 = uninstall.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
