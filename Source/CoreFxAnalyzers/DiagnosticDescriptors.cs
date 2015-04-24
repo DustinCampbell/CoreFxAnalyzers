@@ -4,7 +4,7 @@ namespace CoreFxAnalyzers
 {
     public static class DiagnosticDescriptors
     {
-        public static readonly DiagnosticDescriptor DoNotUseImmutableArrayDefeaultCtor = new DiagnosticDescriptor(
+        public static readonly DiagnosticDescriptor DoNotUseImmutableArrayCtor = new DiagnosticDescriptor(
             id: DiagnosticIds.DoNotUseImmutableArrayDefaultCtor,
             title: "Do not use ImmutableArray<T> default contructor",
             messageFormat: "",

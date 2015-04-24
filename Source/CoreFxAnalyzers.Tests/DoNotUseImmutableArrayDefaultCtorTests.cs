@@ -1,6 +1,10 @@
-﻿using CoreFxAnalyzers.DoNotUseImmutableArrayDefaultCtor;
+﻿using System.Collections.Immutable;
+using System.Linq;
+using System.Reflection;
+using CoreFxAnalyzers.DoNotUseImmutableArrayCtor;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 using NUnit.Framework;
 using RoslynNUnitLight;
 
@@ -10,7 +14,7 @@ namespace CoreFxAnalyzers.Tests
     public class DoNotUseImmutableArrayDefaultCtorTests : AnalyzerTestFixture
     {
         protected override string LanguageName => LanguageNames.CSharp;
-        protected override DiagnosticAnalyzer CreateAnalyzer() => new DoNotUseImmutableArrayDefaultCtorAnalyzer();
+        protected override DiagnosticAnalyzer CreateAnalyzer() => new DoNotUseImmutableArrayCtorAnalyzer();
 
         [Test]
         public void SimpleTest()
@@ -21,12 +25,20 @@ class C
 {
     void M()
     {
-        var a = [|new ImmutableArray<int>()|];
+        var a = new [|ImmutableArray<int>|]();
     }
 }
 ";
+            var references = ImmutableList.Create(
+                MetadataReference.CreateFromAssembly(typeof(object).GetTypeInfo().Assembly),
+                MetadataReference.CreateFromAssembly(typeof(Enumerable).GetTypeInfo().Assembly),
+                MetadataReference.CreateFromAssembly(typeof(ImmutableArray<>).GetTypeInfo().Assembly));
 
-            HasDiagnostic(code, DiagnosticIds.DoNotUseImmutableArrayDefaultCtor);
+            Document document;
+            TextSpan span;
+            TestHelpers.TryGetDocumentAndSpanFromMarkup(code, LanguageName, references, out document, out span);
+
+            HasDiagnostic(document, span, DiagnosticIds.DoNotUseImmutableArrayDefaultCtor);
         }
     }
 }
