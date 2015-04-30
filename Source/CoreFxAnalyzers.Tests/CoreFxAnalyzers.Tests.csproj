@@ -20,6 +20,7 @@
   <ItemGroup>
     <Compile Include="DoNotUseImmutableArrayCollectionInitializerTests.cs" />
     <Compile Include="DoNotUseImmutableArrayDefaultCtorTests.cs" />
+    <Compile Include="ImmutableAnalyzerTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,8 +73,9 @@
       <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RoslynNUnitLight">
-      <HintPath>..\..\packages\RoslynNUnitLight.1.0.0-rc3\lib\portable-net45+win8+wp8+wpa81\RoslynNUnitLight.dll</HintPath>
+    <Reference Include="RoslynNUnitLight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RoslynNUnitLight.1.0.0-rc4\lib\portable-net45+win8+wp8+wpa81\RoslynNUnitLight.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.1.33.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Collections.Immutable.1.1.33-beta\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>

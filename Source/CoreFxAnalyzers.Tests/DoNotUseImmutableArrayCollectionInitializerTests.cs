@@ -1,17 +1,12 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
-using System.Reflection;
-using CoreFxAnalyzers.DoNotUseImmutableArrayCollectionInitializer;
+﻿using CoreFxAnalyzers.DoNotUseImmutableArrayCollectionInitializer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Text;
 using NUnit.Framework;
-using RoslynNUnitLight;
 
 namespace CoreFxAnalyzers.Tests
 {
     [TestFixture]
-    public class DoNotUseImmutableArrayCollectionInitializerTests : AnalyzerTestFixture
+    public class DoNotUseImmutableArrayCollectionInitializerTests : ImmutableAnalyzerTestFixture
     {
         protected override string LanguageName => LanguageNames.CSharp;
         protected override DiagnosticAnalyzer CreateAnalyzer() => new DoNotUseImmutableArrayCollectionInitializerAnalyzer();
@@ -19,7 +14,7 @@ namespace CoreFxAnalyzers.Tests
         [Test]
         public void SimpleTest()
         {
-            const string code = @"
+            const string markupCode = @"
 using System.Collections.Immutable;
 class C
 {
@@ -30,16 +25,7 @@ class C
 }
 ";
 
-            var references = ImmutableList.Create(
-                MetadataReference.CreateFromAssembly(typeof(object).GetTypeInfo().Assembly),
-                MetadataReference.CreateFromAssembly(typeof(Enumerable).GetTypeInfo().Assembly),
-                MetadataReference.CreateFromAssembly(typeof(ImmutableArray<>).GetTypeInfo().Assembly));
-
-            Document document;
-            TextSpan span;
-            TestHelpers.TryGetDocumentAndSpanFromMarkup(code, LanguageName, references, out document, out span);
-
-            HasDiagnostic(document, span, DiagnosticIds.DoNotUseImmutableArrayCollectionInitializer);
+            HasDiagnostic(markupCode, DiagnosticIds.DoNotUseImmutableArrayCollectionInitializer);
         }
     }
 }
