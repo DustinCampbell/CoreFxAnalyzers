@@ -18,7 +18,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoNotUseImmutableArrayCollectionInitializerTests.cs" />
+    <Compile Include="DoNotUseImmutableArrayCollectionInitializerCodeFixTests.cs" />
+    <Compile Include="DoNotUseImmutableArrayCollectionInitializerAnalyzerTests.cs" />
     <Compile Include="DoNotUseImmutableArrayDefaultCtorAnalyzerTests.cs" />
     <Compile Include="DoNotUseImmutableArrayDefaultCtorCodeFixTests.cs" />
     <Compile Include="ImmutableAnalyzerTestFixture.cs" />

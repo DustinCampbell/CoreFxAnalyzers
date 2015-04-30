@@ -19,8 +19,9 @@
     <Compile Include="DiagnosticDescriptors.cs" />
     <Compile Include="DiagnosticIds.cs" />
     <Compile Include="DoNotUseImmutableArrayCollectionInitializer\DoNotUseImmutableArrayCollectionInitializerAnalyzer.cs" />
+    <Compile Include="DoNotUseImmutableArrayCollectionInitializer\DoNotUseImmutableArrayCollectionInitializerCodeFix.cs" />
     <Compile Include="DoNotUseImmutableArrayCtor\DoNotUseImmutableArrayCtorAnalyzer.cs" />
-    <Compile Include="DoNotUseImmutableArrayCtor\DoNotUseImmutableArrayCtorFix.cs" />
+    <Compile Include="DoNotUseImmutableArrayCtor\DoNotUseImmutableArrayCtorCodeFix.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ImmutableArrayAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

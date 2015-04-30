@@ -1,4 +1,4 @@
-﻿using CoreFxAnalyzers.DoNotUseImmutableArrayCtor;
+﻿using CoreFxAnalyzers.DoNotUseImmutableArrayCollectionInitializer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using NUnit.Framework;
@@ -6,10 +6,10 @@ using NUnit.Framework;
 namespace CoreFxAnalyzers.Tests
 {
     [TestFixture]
-    public class DoNotUseImmutableArrayDefaultCtorCodeFixTests : ImmutableCodeFixTestFixture
+    public class DoNotUseImmutableArrayCollectionInitializerCodeFixTests : ImmutableCodeFixTestFixture
     {
         protected override string LanguageName => LanguageNames.CSharp;
-        protected override CodeFixProvider CreateProvider() => new DoNotUseImmutableArrayCtorCodeFix();
+        protected override CodeFixProvider CreateProvider() => new DoNotUseImmutableArrayCollectionInitializerCodeFix();
 
         [Test]
         public void SimpleTest()
@@ -20,7 +20,7 @@ class C
 {
     void M()
     {
-        var a = new [|ImmutableArray<int>|]();
+        var a = new ImmutableArray<int>() [|{ 1, 2, 3, 4, 5 }|];
     }
 }
 ";
@@ -31,12 +31,13 @@ class C
 {
     void M()
     {
-        var a = ImmutableArray<int>.Empty;
+        var a = ImmutableArray.CreateRange(new int[] { 1, 2, 3, 4, 5 });
     }
 }
 ";
 
             TestCodeFix(markupCode, expected, DiagnosticDescriptors.DoNotUseImmutableArrayCtor);
         }
+
     }
 }

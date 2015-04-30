@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CoreFxAnalyzers.DoNotUseImmutableArrayCtor
 {
     [ExportCodeFixProvider(LanguageNames.CSharp)]
-    public class DoNotUseImmutableArrayCtorFix : CodeFixProvider
+    public class DoNotUseImmutableArrayCtorCodeFix : CodeFixProvider
     {
         public override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(DiagnosticIds.DoNotUseImmutableArrayDefaultCtor);
 
