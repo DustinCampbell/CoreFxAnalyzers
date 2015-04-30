@@ -19,7 +19,7 @@ class C
 {
     void M()
     {
-        var a = new [|ImmutableArray<int>()|];
+        var a = new [|ImmutableArray<int>|]();
     }
 }
 ";

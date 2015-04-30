@@ -20,7 +20,7 @@ namespace CoreFxAnalyzers.DoNotUseImmutableArrayCtor
             Debug.Assert(context.Diagnostics.Length == 1);
 
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken);
-            var objectCreation = root.FindNode(context.Span) as ObjectCreationExpressionSyntax;
+            var objectCreation = root.FindNode(context.Span).FirstAncestorOrSelf<ObjectCreationExpressionSyntax>();
 
             Debug.Assert(objectCreation != null);
             Debug.Assert(objectCreation.Initializer == null);
