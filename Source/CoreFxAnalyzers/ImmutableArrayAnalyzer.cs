@@ -9,10 +9,10 @@ namespace CoreFxAnalyzers
         {
             context.RegisterCompilationStartAction(c =>
             {
-                var immutableArrayType = c.Compilation.GetTypeByMetadataName("System.Collections.Immutable.ImmutableArray`1");
-                if (immutableArrayType != null)
+                var immutableArrayOfTType = c.Compilation.GetTypeByMetadataName("System.Collections.Immutable.ImmutableArray`1");
+                if (immutableArrayOfTType != null)
                 {
-                    RegisterImmutableArrayAction(c, immutableArrayType);
+                    RegisterImmutableArrayAction(c, immutableArrayOfTType);
                 }
             });
 

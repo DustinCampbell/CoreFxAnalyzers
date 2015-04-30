@@ -11,11 +11,11 @@ namespace CoreFxAnalyzers.DoNotUseImmutableArrayCollectionInitializer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(DiagnosticDescriptors.DoNotUseImmutableArrayCollectionInitializer);
 
-        protected override void RegisterImmutableArrayAction(CompilationStartAnalysisContext context, INamedTypeSymbol immutableArrayType)
+        protected override void RegisterImmutableArrayAction(CompilationStartAnalysisContext context, INamedTypeSymbol immutableArrayOfTType)
         {
             context.RegisterCodeBlockStartAction<SyntaxKind>(
                 c => c.RegisterSyntaxNodeAction(
-                    c2 => AnalyzeCollectionInitializerExpression(c2, immutableArrayType),
+                    c2 => AnalyzeCollectionInitializerExpression(c2, immutableArrayOfTType),
                     SyntaxKind.CollectionInitializerExpression));
         }
 
