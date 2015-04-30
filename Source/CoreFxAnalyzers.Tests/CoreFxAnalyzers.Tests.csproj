@@ -18,6 +18,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoNotUseImmutableArrayCollectionInitializerTests.cs" />
     <Compile Include="DoNotUseImmutableArrayDefaultCtorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

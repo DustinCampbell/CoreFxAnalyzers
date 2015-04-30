@@ -14,14 +14,18 @@ namespace CoreFxAnalyzers.DoNotUseImmutableArrayCtor
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterCompilationStartAction(outerContext =>
+            context.RegisterCompilationStartAction(context1 =>
             {
-                var type = outerContext.Compilation.GetTypeByMetadataName("System.Collections.Immutable.ImmutableArray`1");
+                var type = context1.Compilation.GetTypeByMetadataName("System.Collections.Immutable.ImmutableArray`1");
                 if (type != null)
                 {
-                    context.RegisterSyntaxNodeAction(
-                        innerContext => AnalyzeObjectCreationExpression(innerContext, type),
-                        SyntaxKind.ObjectCreationExpression);
+                    context1.RegisterCodeBlockStartAction<SyntaxKind>(
+                        context2 =>
+                        {
+                            context2.RegisterSyntaxNodeAction(
+                                context3 => AnalyzeObjectCreationExpression(context3, type),
+                                SyntaxKind.ObjectCreationExpression);
+                        });
                 }
             });
         }
@@ -30,16 +34,13 @@ namespace CoreFxAnalyzers.DoNotUseImmutableArrayCtor
         {
             var objectCreationExpression = (ObjectCreationExpressionSyntax)context.Node;
 
-            var objectCreationType = context.SemanticModel.GetSymbolInfo(objectCreationExpression.Type).Symbol as INamedTypeSymbol;
-            if (objectCreationType?.ConstructedFrom != type)
+            if (objectCreationExpression.IsType(type, context.SemanticModel))
             {
-                return;
+                context.ReportDiagnostic(
+                    Diagnostic.Create(
+                        DiagnosticDescriptors.DoNotUseImmutableArrayCtor,
+                        objectCreationExpression.Type.GetLocation()));
             }
-
-            context.ReportDiagnostic(
-                Diagnostic.Create(
-                    DiagnosticDescriptors.DoNotUseImmutableArrayCtor,
-                    objectCreationExpression.Type.GetLocation()));
         }
     }
 }

@@ -18,7 +18,9 @@
     <Compile Include="DiagnosticCategories.cs" />
     <Compile Include="DiagnosticDescriptors.cs" />
     <Compile Include="DiagnosticIds.cs" />
+    <Compile Include="DoNotUseImmutableArrayCollectionInitializer\DoNotUseImmutableArrayCollectionInitializerAnalyzer.cs" />
     <Compile Include="DoNotUseImmutableArrayCtor\DoNotUseImmutableArrayCtorAnalyzer.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
