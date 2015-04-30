@@ -24,7 +24,7 @@ namespace CoreFxAnalyzers.DoNotUseImmutableArrayCtor
         {
             var objectCreationExpression = (ObjectCreationExpressionSyntax)context.Node;
 
-            if (objectCreationExpression.Initializer?.Kind() != SyntaxKind.CollectionInitializerExpression &&
+            if (objectCreationExpression.Initializer == null &&
                 objectCreationExpression.IsType(type, context.SemanticModel))
             {
                 context.ReportDiagnostic(

@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace CoreFxAnalyzers.Tests
 {
     [TestFixture]
-    public class DoNotUseImmutableArrayDefaultCtorTests : ImmutableAnalyzerTestFixture
+    public class DoNotUseImmutableArrayDefaultCtorAnalyzerTests : ImmutableAnalyzerTestFixture
     {
         protected override string LanguageName => LanguageNames.CSharp;
         protected override DiagnosticAnalyzer CreateAnalyzer() => new DoNotUseImmutableArrayCtorAnalyzer();

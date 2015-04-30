@@ -19,9 +19,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoNotUseImmutableArrayCollectionInitializerTests.cs" />
-    <Compile Include="DoNotUseImmutableArrayDefaultCtorTests.cs" />
+    <Compile Include="DoNotUseImmutableArrayDefaultCtorAnalyzerTests.cs" />
+    <Compile Include="DoNotUseImmutableArrayDefaultCtorCodeFixTests.cs" />
     <Compile Include="ImmutableAnalyzerTestFixture.cs" />
+    <Compile Include="ImmutableCodeFixTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="References.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
