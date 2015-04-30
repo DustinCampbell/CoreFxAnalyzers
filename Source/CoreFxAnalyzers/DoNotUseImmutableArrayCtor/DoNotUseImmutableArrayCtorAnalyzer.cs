@@ -7,27 +7,17 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace CoreFxAnalyzers.DoNotUseImmutableArrayCtor
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseImmutableArrayCtorAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseImmutableArrayCtorAnalyzer : ImmutableArrayAnalyzer
     {
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
             ImmutableArray.Create(DiagnosticDescriptors.DoNotUseImmutableArrayCtor);
 
-        public override void Initialize(AnalysisContext context)
+        protected override void RegisterImmutableArrayAction(CompilationStartAnalysisContext context, INamedTypeSymbol immutableArrayType)
         {
-            context.RegisterCompilationStartAction(context1 =>
-            {
-                var type = context1.Compilation.GetTypeByMetadataName("System.Collections.Immutable.ImmutableArray`1");
-                if (type != null)
-                {
-                    context1.RegisterCodeBlockStartAction<SyntaxKind>(
-                        context2 =>
-                        {
-                            context2.RegisterSyntaxNodeAction(
-                                context3 => AnalyzeObjectCreationExpression(context3, type),
-                                SyntaxKind.ObjectCreationExpression);
-                        });
-                }
-            });
+            context.RegisterCodeBlockStartAction<SyntaxKind>(
+                c => c.RegisterSyntaxNodeAction(
+                    c2 => AnalyzeObjectCreationExpression(c2, immutableArrayType),
+                    SyntaxKind.ObjectCreationExpression));
         }
 
         private void AnalyzeObjectCreationExpression(SyntaxNodeAnalysisContext context, INamedTypeSymbol type)

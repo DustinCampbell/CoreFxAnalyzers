@@ -21,6 +21,7 @@
     <Compile Include="DoNotUseImmutableArrayCollectionInitializer\DoNotUseImmutableArrayCollectionInitializerAnalyzer.cs" />
     <Compile Include="DoNotUseImmutableArrayCtor\DoNotUseImmutableArrayCtorAnalyzer.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="ImmutableArrayAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
